@@ -11,6 +11,7 @@
 
 add_action('admin_menu', 'owm_font_icons');
 add_action('init', 'owm_font_icons_styles');
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'owm_font_icons_settings' );
 register_activation_hook(__FILE__, 'owm_font_icons_activation');
 register_deactivation_hook(__FILE__, 'owm_font_icons_deactivation');
 register_uninstall_hook( __FILE__, 'owm_font_icons_uninstall' );
@@ -25,13 +26,13 @@ function owm_font_icons_textdomain() {
 
 function owm_font_icons(){
 	add_menu_page( __('OpenWeatherMap', 'owm-ficons'), __('OWM Font Icons','owm-ficons'), 'manage_options', 'owm_font_icons', 'owm_font_icons_init','dashicons-cloud' );
-	add_submenu_page('owm_font_icons', __('Generate your shortcode', 'owm-ficons'), __('Get shortcode','owm-ficons'),'manage_options','owm_font_icons', 'owm_font_icons_init');
+	add_submenu_page('owm_font_icons', __('Informers', 'owm-ficons'), __('Informers','owm-ficons'),'manage_options','owm_font_icons', 'owm_font_icons_init');
 	add_submenu_page('owm_font_icons', __('Open Weather Map Settings', 'owm-ficons'), __('Settings','owm-ficons'),'manage_options','owm_font_icons_settings', 'owm_font_icons_settings_init');
 }
 
 function owm_font_icons_init() {
-	echo '<h1>'.__('Generate shortcode', 'owm-ficons').'</h1>';
-	require_once ('includes/general.php');
+	echo '<h1>'.__('Open Weather Map Informers', 'owm-ficons').'</h1>';
+	require_once ('includes/informers.php');
 }
 
 function owm_font_icons_settings_init() {
@@ -41,6 +42,11 @@ function owm_font_icons_settings_init() {
 
 function owm_font_icons_styles() {
 	wp_enqueue_style('fdscode_data_styles', plugin_dir_url( __FILE__ ).('css/general.css'));
+}
+
+function owm_font_icons_settings($links) {
+	array_push($links, '<a href="'. esc_url( get_admin_url(null, 'admin.php?page=owm_font_icons_settings') ) .'">Settings</a>');
+	return $links;
 }
 
 function owm_font_icons_activation(){
@@ -54,7 +60,7 @@ function owm_font_icons_deactivation() {
 }
 
 function owm_font_icons_uninstall() {
-	delete_option('owm_font_icons');
+	delete_option('owm_font_icons_api');
 	delete_transient('owm_font_icons');
 }
 ?>
