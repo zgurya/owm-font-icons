@@ -13,6 +13,7 @@ add_action('admin_menu', 'owm_font_icons');
 add_action('init', 'owm_font_icons_styles');
 register_activation_hook(__FILE__, 'owm_font_icons_activation');
 register_deactivation_hook(__FILE__, 'owm_font_icons_deactivation');
+register_uninstall_hook( __FILE__, 'owm_font_icons_deactivation' );
 
 require_once ('includes/api.php');
 require_once ('includes/shortcode.php');
