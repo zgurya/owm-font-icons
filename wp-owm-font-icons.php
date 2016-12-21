@@ -13,7 +13,7 @@ add_action('admin_menu', 'owm_font_icons');
 add_action('init', 'owm_font_icons_styles');
 register_activation_hook(__FILE__, 'owm_font_icons_activation');
 register_deactivation_hook(__FILE__, 'owm_font_icons_deactivation');
-register_uninstall_hook( __FILE__, 'owm_font_icons_deactivation' );
+register_uninstall_hook( __FILE__, 'owm_font_icons_uninstall' );
 
 require_once ('includes/api.php');
 require_once ('includes/shortcode.php');
@@ -40,16 +40,21 @@ function owm_font_icons_settings_init() {
 }
 
 function owm_font_icons_styles() {
-	wp_enqueue_style( 'fdscode_data_styles', plugin_dir_url( __FILE__ ).('css/general.css') );
+	wp_enqueue_style('fdscode_data_styles', plugin_dir_url( __FILE__ ).('css/general.css'));
 }
 
 function owm_font_icons_activation(){
-	if ( get_transient( 'owm_font_icons' ) )  {
-		delete_transient( 'owm_font_icons' );
+	if ( get_transient('owm_font_icons'))  {
+		delete_transient('owm_font_icons');
 	}
 }
 
 function owm_font_icons_deactivation() {
-	delete_transient( 'owm_font_icons' );
+	delete_transient('owm_font_icons');
+}
+
+function owm_font_icons_uninstall() {
+	delete_option('owm_font_icons');
+	delete_transient('owm_font_icons');
 }
 ?>
