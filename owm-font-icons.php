@@ -25,23 +25,23 @@ function owm_font_icons_textdomain() {
 }
 
 function owm_font_icons(){
-	add_menu_page( __('OpenWeatherMap', 'owm-ficons'), __('OWM Font Icons','owm-ficons'), 'manage_options', 'owm_font_icons', 'owm_font_icons_init','dashicons-cloud' );
-	add_submenu_page('owm_font_icons', __('Informers', 'owm-ficons'), __('Informers','owm-ficons'),'manage_options','owm_font_icons', 'owm_font_icons_init');
-	add_submenu_page('owm_font_icons', __('Open Weather Map Settings', 'owm-ficons'), __('Settings','owm-ficons'),'manage_options','owm_font_icons_settings', 'owm_font_icons_settings_init');
+	add_menu_page( __('OpenWeatherMap', 'owm-font-icon'), __('OWM Font Icons','owm-font-icon'), 'manage_options', 'owm_font_icons', 'owm_font_icons_init','dashicons-cloud' );
+	add_submenu_page('owm_font_icons', __('Informers', 'owm-font-icon'), __('Informers','owm-font-icon'),'manage_options','owm_font_icons', 'owm_font_icons_init');
+	add_submenu_page('owm_font_icons', __('Open Weather Map Settings', 'owm-font-icon'), __('Settings','owm-font-icon'),'manage_options','owm_font_icons_settings', 'owm_font_icons_settings_init');
 }
 
 function owm_font_icons_init() {
-	echo '<h1>'.__('Open Weather Map Informers', 'owm-ficons').'</h1>';
+	echo '<h1>'.__('Open Weather Map Informers', 'owm-font-icon').'</h1>';
 	require_once ('includes/informers.php');
 }
 
 function owm_font_icons_settings_init() {
-	echo '<h1>'.__('Open Weather Map Settings', 'owm-ficons').'</h1>';
+	echo '<h1>'.__('Open Weather Map Settings', 'owm-font-icon').'</h1>';
 	require_once ('includes/settings.php');
 }
 
 function owm_font_icons_styles() {
-	wp_enqueue_style('fdscode_data_styles', plugin_dir_url( __FILE__ ).('css/general.css'));
+	wp_enqueue_style('owm_font_icons_styles', plugin_dir_url( __FILE__ ).('css/general.css'));
 }
 
 function owm_font_icons_settings($links) {
