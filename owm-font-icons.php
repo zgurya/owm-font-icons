@@ -1,7 +1,7 @@
 <?php 
 /**
  * Plugin Name: OWM Font Icons
- * Plugin URI: https://github.com/zgurya/wp-owm-font-icons
+ * Plugin URI: https://github.com/zgurya/owm-font-icons
  * Description: This plugin allows you to create shortcodes to display the weather information using font icons. Weather information provided by OpenWeatherMap API.
  * Version: 1.0
  * Author: Zgurya Andrey
@@ -21,7 +21,7 @@ require_once ('includes/shortcode.php');
 
 add_action( 'plugins_loaded', 'owm_font_icons_textdomain' );
 function owm_font_icons_textdomain() {
-	load_plugin_textdomain( 'owm-ficons', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'owm-font-icons', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 
 function owm_font_icons(){
