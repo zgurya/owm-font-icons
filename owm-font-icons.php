@@ -3,23 +3,30 @@
  * Plugin Name: OWM Font Icons
  * Plugin URI: https://github.com/zgurya/owm-font-icons
  * Description: This plugin allows you to create shortcodes to display the weather information using font icons. Weather information provided by OpenWeatherMap API.
- * Version: 1.0
+ * Version: 0.1
  * Author: Zgurya Andrey
  * Author URI: https://github.com/zgurya
  * License: GPL2
  */
 
+require_once ('includes/class.php');
+add_action('init', 'OWN_FI');
 add_action('admin_menu', 'owm_font_icons');
 add_action('init', 'owm_font_icons_styles');
-add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'owm_font_icons_settings' );
-register_activation_hook(__FILE__, 'owm_font_icons_activation');
-register_deactivation_hook(__FILE__, 'owm_font_icons_deactivation');
-register_uninstall_hook( __FILE__, 'owm_font_icons_uninstall' );
+add_filter( 'plugin_action_links_'. plugin_basename(__FILE__),'owm_font_icons_settings');
+register_activation_hook(__FILE__,'owm_font_icons_activation');
+register_deactivation_hook(__FILE__,'owm_font_icons_deactivation');
+register_uninstall_hook( __FILE__,'owm_font_icons_uninstall');
 
-require_once ('includes/api.php');
-require_once ('includes/shortcode.php');
 
-add_action( 'plugins_loaded', 'owm_font_icons_textdomain' );
+function OWN_FI() {
+	global $OWN_FI;
+	$OWN_FI = OWN_FI::getInstance();
+	require_once ('includes/helper.php');
+	require_once ('includes/shortcode.php');
+}
+
+add_action('plugins_loaded','owm_font_icons_textdomain');
 function owm_font_icons_textdomain() {
 	load_plugin_textdomain( 'owm-font-icons', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
