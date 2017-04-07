@@ -1,0 +1,10 @@
+.wp-core-ui .button-secondary{margin-bottom: 15px;}
+form#owm-font-icons #owm-city{width: 70%; height: 300px;}
+form#owm-font-icons input[type="checkbox"]{margin-left: 15px;}
+form#owm-font-icons input[type="checkbox"]:first-child {margin-left: 0;}
+form#owm-font-icons .error{color: red;}
+form#owm-font-icons input.error::-webkit-input-placeholder {color:red;}
+form#owm-font-icons input.error::-moz-placeholder          {color:red;}
+form#owm-font-icons input.error:-moz-placeholder           {color:red;}
+form#owm-font-icons input.error:-ms-input-placeholder      {color:red;}
+table#owm-font-icons-informers .td{text-transform: capitalize;}

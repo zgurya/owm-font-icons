@@ -1,6 +1,3 @@
-<?php
-if(isset($_POST['api_key'])) update_option('owm_font_icons_api', $_POST['api_key']);
-?>
 <form method="POST">
 	<table class="form-table">
 		<tr>
